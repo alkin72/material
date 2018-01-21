@@ -11,6 +11,7 @@ import javafx.stage.Stage;
 
 import java.io.IOException;
 import java.sql.Connection;
+import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 
@@ -21,7 +22,8 @@ public class Main extends Application {
 
         try {
             //Parent root = null;
-            Parent root = FXMLLoader.load(getClass().getResource("../../resources/mainwindow.fxml"));
+            Parent root;
+            root = FXMLLoader.load(getClass().getResource("../../resources/mainwindow.fxml"));
             primaryStage.setTitle("Материалы");
             primaryStage.setScene(new Scene(root));
             primaryStage.show();
@@ -38,8 +40,14 @@ public class Main extends Application {
 
             Connection con = datalay.getConnection();
             Statement statement = con.createStatement();
-            statement.execute("SELECT * FROM contragent");
+            ResultSet rs = statement.executeQuery("SELECT * FROM contragent");
 
+            while (rs.next()){
+                System.out.println(rs.getInt(0));
+                System.out.println(rs.getString(1));
+                System.out.println(rs.getString(2));
+                System.out.println("---------------------");
+            }
 
         } catch (SQLException e) {
             e.printStackTrace();
