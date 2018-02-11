@@ -1,13 +1,12 @@
 package material;
 
-
-
-
 import javafx.application.Application;
+
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
+import material.view.Controller;
 
 import java.io.IOException;
 import java.sql.Connection;
@@ -21,22 +20,39 @@ public class Main extends Application {
     public void start(Stage primaryStage) {
 
         try {
-            //Parent root = null;
+
+            /* Старый вариант
+            Parent root = null;
             Parent root;
             root = FXMLLoader.load(getClass().getResource("../../resources/mainwindow.fxml"));
+            */
+
+            //Создание загрузчика и подключение файла fxml
+            FXMLLoader loader = new FXMLLoader();
+            loader.setLocation(Main.class.getResource("../../resources/mainwindow.fxml"));
+
+            //Загрузка окна
             primaryStage.setTitle("Материалы");
-            primaryStage.setScene(new Scene(root));
+            primaryStage.setScene(new Scene(loader.load()));
             primaryStage.show();
+
+            // Даём контроллеру доступ к главному приложению.
+            Controller controller = loader.getController();
+            controller.setMain(this);
 
         } catch (IOException e) {
             e.printStackTrace();
         }
 
+        //Для теста
         System.out.println("Привет!!!");
 
+        //Подключаем слой данных
         Datalay datalay = new Datalay();
 
         try {
+
+            //Попытка подключения к базе данных
 
             Connection con = datalay.getConnection();
             Statement statement = con.createStatement();
@@ -58,6 +74,7 @@ public class Main extends Application {
     public static void main(String[] args) {
         launch(args);
     }
+
 
 
 }
