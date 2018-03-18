@@ -1,0 +1,18 @@
+
+.button {
+    -fx-background-color: #2590FF;
+    -fx-border-radius: 4px;
+    -fx-text-fill: white;
+    -fx-cursor: hand;
+    -fx-effect: dropshadow(three-pass-box, gray, 10, 0, 0, 0);
+    -fx-font-size: 13px;
+    -fx-font-weight: 500;
+}
+
+.button:hover {
+    -fx-background-color: #2FA8FF;
+}
+
+.button:pressed {
+    -fx-background-color: orange;
+}

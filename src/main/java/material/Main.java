@@ -56,14 +56,20 @@ public class Main extends Application {
 
             Connection con = datalay.getConnection();
             Statement statement = con.createStatement();
-            ResultSet rs = statement.executeQuery("SELECT * FROM contragent");
+            ResultSet rs = statement.executeQuery("SELECT * FROM edinica");
+
+
 
             while (rs.next()){
-                System.out.println(rs.getInt(0));
-                System.out.println(rs.getString(1));
+
+
+                System.out.println(rs.getInt(1));
                 System.out.println(rs.getString(2));
+               // System.out.println(rs.getString(3));
                 System.out.println("---------------------");
             }
+
+            datalay.ConnectionClose();
 
         } catch (SQLException e) {
             e.printStackTrace();

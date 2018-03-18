@@ -13,12 +13,11 @@ public class Datalay {
     private static final String DB_URL = "jdbc:mysql://localhost:3306/dbabz";
     private static final String DB_USER_NAME = "root";
     private static final String DB_PASSWORD = "";
+    Connection conn = null;
+
+    public  Connection getConnection(){
 
 
-    public  Connection getConnection() {
-
-
-        Connection conn = null;
         try {
 
             Class.forName("com.mysql.jdbc.Driver");
@@ -34,4 +33,12 @@ public class Datalay {
 
     }
 
+    public void ConnectionClose(){
+
+        try {
+            conn.close();
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+    }
 }
